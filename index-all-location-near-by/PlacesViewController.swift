@@ -15,8 +15,11 @@ class PlacesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // An array to hold the list of possible locations.
+    // TODO: create a switch case for all label types google places support
     var likelyPlaces: [GMSPlace] = []
     var shopping_mall: [GMSPlace] = []
+    var convenience_store: [GMSPlace] = []
+    var restaurant: [GMSPlace] = []
     var selectedPlace: GMSPlace?
     var lengthOfArray: Int = 0
     
@@ -40,35 +43,15 @@ class PlacesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        lengthOfArray = likelyPlaces.count
-        print(lengthOfArray)
-        
+        //Sorting based on types that contains keywords
         for i in 0..<likelyPlaces.count {
-            print(likelyPlaces[i].name)
-//            if !(likelyPlaces[i].types.contains("shopping_mall")) {
-//                print(i)
-//                print(likelyPlaces[i])
-//            }
-            
-            if (likelyPlaces[i].types.contains("shopping_mall") && !shopping_mall.contains(likelyPlaces[i])) {
-                shopping_mall.append(likelyPlaces[i])
+            if (likelyPlaces[i].types.contains("restaurant") && !restaurant.contains(likelyPlaces[i])) {
+                restaurant.append(likelyPlaces[i])
             }
-            
-//            print(likelyPlaces)
         }
         likelyPlaces.removeAll()
-        likelyPlaces = shopping_mall
-//        print("LIKELYPLACES LIST:")
-//        for i in 0..<likelyPlaces.count {
-//            print(likelyPlaces[i].name)
-//        }
-//        print("SHOPPING MALL LIST")
-//        for i in 0..<shopping_mall.count {
-//            print(shopping_mall[i].name)
-//        }
+        likelyPlaces = restaurant
         tableView.reloadData()
-//        print(lengthOfArray)
-//        print(likelyPlaces)
     }
     
     // Pass the selected place to the new view controller.

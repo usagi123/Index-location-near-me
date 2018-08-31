@@ -1,0 +1,6 @@
+framework module Pods_index_all_location_near_by {
+  umbrella header "Pods-index-all-location-near-by-umbrella.h"
+
+  export *
+  module * { export * }
+}
